@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const subscriberSchema = new mongoose.Schema({
+const SubscriberSchema = mongoose.Schema({
     firstName: {
         type: String,
         required: true,
@@ -12,12 +12,20 @@ const subscriberSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
     },
     phone: {
         type: String,
         required: true,
     },
-});
- const Subscriber = mongoose.model("Subscriber",  subscriberSchema);
- 
- module.exports = Subscriber
+    interests: {
+        type: String,
+        default: "",
+    }, 
+    subscribedAt:  {
+        type: Date,
+        default: Date.now
+    }
+})
+
+module.exports =mongoose.model("Subscriber",  SubscriberSchema)
